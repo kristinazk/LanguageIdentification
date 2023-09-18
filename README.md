@@ -15,11 +15,13 @@ The dataset for this object detection task consists of images containing books i
 - **Multi-Language Images**: To satisfy the special requirement of handling images with multiple languages, a separate group of images was created. These images contain books with text in several languages within a single image.
 
 ## 2. Data Augmentation
-Data augmentation techniques were applied to increase the diversity of the dataset and account for rotated images. The following steps were implemented:
+Data augmentation techniques (specifically rotationg) were applied to increase the diversity of the dataset and account for rotated images. The following steps were implemented:
 
 - **Rotation**: A script was utilized to randomly rotate the images within a range of -30 to 30 degrees. This rotation range was based on the discussion in the Stack Overflow thread [link](https://stackoverflow.com/questions/52050792/can-object-detection-models-adapt-to-rotation). Rotation was only applied if the difference in degrees exceeded 10, ensuring significant variation.
 
 - **Bounding Box Adjustment**: Bounding boxes were adjusted accordingly after image rotation to maintain accurate object annotations.
+
+Since initially the number of photos whith multiple languages in one was excessively smaller, during data augmentation, these types of photos were rotated and saved in the dataset in 4 different ways, whereas the regular ones were rotated only twice.
 
 ## 3. Data Partitioning
 The dataset was split into three subsets for training, validation, and testing, respectively, with the following proportions:
@@ -37,13 +39,11 @@ The TensorFlow Object Detection API was employed for model training and evaluati
 
 - **Effectiveness**: Despite its efficiency, the model has demonstrated good performance in object detection tasks.
 
-- **Batch Size**: Training was conducted with a batch size of 16 to strike a balance between training speed and memory usage.
+Training was conducted with a batch size of 16 to strike a balance between training speed and memory usage.
 
-- **Tensorboard Monitoring**: Tensorboard was used to monitor the loss values and other training metrics over time, enabling effective model optimization.
+**Tensorboard Monitoring** Tensorboard was used to monitor the loss values and other training metrics over time, enabling effective model optimization.
 
 <img width="568" alt="Screenshot 2023-09-18 at 02 11 37" src="https://github.com/kristinazk/LanguageIdentification/assets/90059525/801cdb9b-db6d-4bb6-a1ba-3fa8cf8f3d28">
-
-By following this structured approach, we aim to create an accurate and robust object detection model capable of detecting books in images with text in multiple languages. This README provides an overview of the key steps taken to achieve this goal.
 
 ## 5. Model Inference
 
